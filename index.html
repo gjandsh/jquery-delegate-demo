@@ -1,0 +1,208 @@
+<html>
+
+<head>
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <meta charset="utf-8">
+    <title>jQuery delegate demo</title>
+    <style>
+        body {
+            font-size: 12px;
+            font-family: Arial, Verdana, "\5b8b\4f53"
+        }
+
+        ul,
+        li {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .clearfix {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .container {
+            margin: 0 auto;
+            width: 700px;
+        }
+
+        .title {
+            font-size: 2em;
+            font-weight: bold;
+            color: #666;
+        }
+
+        .items {
+            margin: -20px 0 0 -20px;
+        }
+
+        .item {
+            margin: 20px 0 0 20px;
+            padding: 10px 20px;
+            border: 1px solid #eee;
+            background-color: #fff;
+            float: left;
+            width: 178px;
+            position: relative;
+        }
+
+        .item-name,
+        .price {
+            font-size: 12px;
+            line-height: 18px;
+            margin: 0;
+            color: #666;
+        }
+
+        .item-name {
+            height: 36px;
+        }
+
+        .price {
+            color: #c81623;
+        }
+
+        .cover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 218px;
+            height: 204px;
+            background-color: rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+
+        .cover a {
+            position: absolute;
+            color: #c81623;
+            width: 48px;
+            font-size: 12px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid #c81623;
+            background-color: #fff;
+            padding: 10px 15px;
+            border-radius: 3px;
+        }
+
+        .add {
+            display: inline-block;
+            padding: 10px 15px;
+            border: 1px solid #c81623;
+            border-radius: 3px;
+            margin-top: 20px;
+            color: #c81623;
+        }
+
+        .active .cover {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class='title'>珠宝首饰</h1>
+        <ul class="items clearfix">
+            <li class="item">
+                <div class="cover">
+                    <a href="">立即抢购</a>
+                </div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <p class="item-name">藏美千足金和田玉金镶玉路路通吊坠</p>
+                <p class='price'>￥1699.00</p>
+            </li>
+            <li class="item">
+                <div class="cover">
+                    <a href="">立即抢购</a>
+                </div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <p class="item-name">藏美千足金和田玉金镶玉路路通吊坠</p>
+                <p class='price'>￥1699.00</p>
+            </li>
+            <li class="item">
+                <div class="cover">
+                    <a href="">立即抢购</a>
+                </div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <p class="item-name">藏美千足金和田玉金镶玉路路通吊坠</p>
+                <p class='price'>￥1699.00</p>
+            </li>
+            <li class="item">
+                <div class="cover">
+                    <a href="">立即抢购</a>
+                </div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <p class="item-name">藏美千足金和田玉金镶玉路路通吊坠</p>
+                <p class='price'>￥1699.00</p>
+            </li>
+            <li class="item">
+                <div class="cover">
+                    <a href="">立即抢购</a>
+                </div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <p class="item-name">藏美千足金和田玉金镶玉路路通吊坠</p>
+                <p class='price'>￥1699.00</p>
+            </li>
+            <li class="item">
+                <div class="cover">
+                    <a href="">立即抢购</a>
+                </div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <p class="item-name">藏美千足金和田玉金镶玉路路通吊坠</p>
+                <p class='price'>￥1699.00</p>
+            </li>
+        </ul>
+        <a href="" class="add">添加</a>
+    </div>
+    <script>
+        var products = [
+            {
+                img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+                name: '珂兰 黄金手 猴哥款',
+                price: '￥405.00'
+            }, {
+                img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+                name: '珂兰 黄金转运珠 猴哥款',
+                price: '￥100.00'
+            }, {
+                img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+                name: '珂兰 黄金手链 3D猴哥款',
+                price: '￥45.00'
+            }
+        ];
+        function addProduct(product) {
+            var html =
+                `<li class="item">
+                    <div class="cover">
+                        <a href="">立即抢购</a>
+                    </div>
+                    <img src=${product.img} alt="">
+                    <p class="item-name">${product.name}</p>
+                    <p class='price'>${product.price}</p>
+                </li>`
+            return html
+        }
+        $('.add').on('click', function (e) {
+            e.preventDefault();
+            $.each(products, function (index, product) {
+                $(addProduct(product)).appendTo($('ul.items'))
+            })
+        })
+        $('.items').on('mouseenter', '.item', function (e) {
+            $(this).addClass('active')
+        })
+        $('.items').on('mouseleave', '.item', function (e) {
+            $(this).removeClass('active')
+        })
+    </script>
+</body>
+
+</html>
